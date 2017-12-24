@@ -63,7 +63,10 @@ set(SRC_FILES ${SRC_C_FILES} ${SRC_H_FILES})
 
 add_library(SDL_mixer ${SRC_FILES})
 target_link_libraries(SDL_mixer SDL2::SDL2)
-target_compile_definitions(SDL_mixer PUBLIC WAV_MUSIC)
+target_compile_definitions(SDL_mixer PRIVATE
+    MUSIC_WAV
+    MUSIC_MID
+)
 
 #link_libraries(${SDL2_LIBRARY})
 #include_directories(${SDL2_INCLUDE_DIR})
