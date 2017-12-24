@@ -15,54 +15,48 @@ find_package(SDL2 CONFIG REQUIRED)
 #find_package(SDL2 REQUIRED)
 
 set(SRC_C_FILES
-    dynamic_flac.c
-    dynamic_fluidsynth.c
-    dynamic_mod.c
-    dynamic_modplug.c
-    dynamic_mp3.c
-    dynamic_ogg.c
+    effects_internal.c
     effect_position.c
     effect_stereoreverse.c
-    effects_internal.c
-    fluidsynth.c
     load_aiff.c
-    load_flac.c
-    load_mp3.c
-    load_ogg.c
     load_voc.c
     mixer.c
     music.c
     music_cmd.c
     music_flac.c
+    music_fluidsynth.c
     music_mad.c
-    music_mod.c
+    music_mikmod.c
     music_modplug.c
+    music_mpg123.c
+    music_nativemidi.c
     music_ogg.c
-    wavestream.c
+    music_smpeg.c
+    music_timidity.c
+    music_wav.c
+    playmus.c
+    playwave.c
 )
 
 set(SRC_H_FILES
-    dynamic_flac.h
-    dynamic_fluidsynth.h
-    dynamic_mod.h
-    dynamic_modplug.h
-    dynamic_mp3.h
-    dynamic_ogg.h
     effects_internal.h
-    fluidsynth.h
     load_aiff.h
-    load_flac.h
-    load_mp3.h
-    load_ogg.h
     load_voc.h
+    mixer.h
+    music.h
     music_cmd.h
     music_flac.h
+    music_fluidsynth.h
     music_mad.h
-    music_mod.h
+    music_mikmod.h
     music_modplug.h
+    music_mpg123.h
+    music_nativemidi.h
     music_ogg.h
+    music_smpeg.h
+    music_timidity.h
+    music_wav.h
     SDL_mixer.h
-    wavestream.h
 )
 
 set(SRC_FILES ${SRC_C_FILES} ${SRC_H_FILES})
