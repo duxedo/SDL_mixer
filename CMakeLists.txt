@@ -11,6 +11,8 @@ PROJECT(SDL_mixer VERSION 2.0.1)
 hunter_add_package(SDL2)
 find_package(SDL2 CONFIG REQUIRED)
 
+add_subdirectory(external/libogg-1.3.2 libogg)
+add_subdirectory(external/libvorbis-1.3.5 libvorbis)
 #set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 #find_package(SDL2 REQUIRED)
 
@@ -62,10 +64,16 @@ set(SRC_H_FILES
 set(SRC_FILES ${SRC_C_FILES} ${SRC_H_FILES})
 
 add_library(SDL_mixer ${SRC_FILES})
-target_link_libraries(SDL_mixer SDL2::SDL2)
+target_link_libraries(SDL_mixer SDL2::SDL2 vorbis)
 target_compile_definitions(SDL_mixer PRIVATE
     MUSIC_WAV
     MUSIC_MID
+    MUSIC_OGG
+)
+
+target_include_directories(SDL_mixer
+  PRIVATE
+    vorbis
 )
 
 #link_libraries(${SDL2_LIBRARY})
@@ -96,29 +104,29 @@ write_basic_package_version_file(
 configure_file("Config.cmake.in" "${project_config}" @ONLY)
 
 
-install(
-    TARGETS SDL_mixer
-    EXPORT "${targets_export_name}"
-    LIBRARY DESTINATION "lib"
-    ARCHIVE DESTINATION "lib"
-    RUNTIME DESTINATION "bin"
-    INCLUDES DESTINATION "${include_install_dir}" "${include_install_dir}/SDL2"
-)
-
-install(
-    FILES ${SRC_H_FILES}
-    DESTINATION "${include_install_dir}/SDL2"
-)
-
-
-install(
-    FILES "${project_config}" "${version_config}"
-    DESTINATION "${config_install_dir}"
-)
-
-
-install(
-    EXPORT "${targets_export_name}"
-    NAMESPACE "${namespace}"
-    DESTINATION "${config_install_dir}"
-)
+#install(
+#    TARGETS SDL_mixer
+#    EXPORT "${targets_export_name}"
+#    LIBRARY DESTINATION "lib"
+#    ARCHIVE DESTINATION "lib"
+#    RUNTIME DESTINATION "bin"
+#    INCLUDES DESTINATION "${include_install_dir}" "${include_install_dir}/SDL2"
+#)
+#
+#install(
+#    FILES ${SRC_H_FILES}
+#    DESTINATION "${include_install_dir}/SDL2"
+#)
+#
+#
+#install(
+#    FILES "${project_config}" "${version_config}"
+#    DESTINATION "${config_install_dir}"
+#)
+#
+#
+#install(
+#    EXPORT "${targets_export_name}"
+#    NAMESPACE "${namespace}"
+#    DESTINATION "${config_install_dir}"
+#)
