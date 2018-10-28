@@ -64,7 +64,7 @@ set(SRC_H_FILES
 set(SRC_FILES ${SRC_C_FILES} ${SRC_H_FILES})
 
 add_library(SDL_mixer ${SRC_FILES})
-target_link_libraries(SDL_mixer SDL2::SDL2 vorbis)
+
 target_compile_definitions(SDL_mixer PRIVATE
     MUSIC_WAV
     MUSIC_MID
@@ -72,9 +72,13 @@ target_compile_definitions(SDL_mixer PRIVATE
 )
 
 target_include_directories(SDL_mixer
+  PUBLIC
+  ../SDL_mixer
   PRIVATE
     vorbis
 )
+
+target_link_libraries(SDL_mixer SDL2::SDL2 vorbis)
 
 #link_libraries(${SDL2_LIBRARY})
 #include_directories(${SDL2_INCLUDE_DIR})
